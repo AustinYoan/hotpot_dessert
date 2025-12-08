@@ -184,6 +184,36 @@
             </div>
 
             <div class="question-card" id="q7">
+                <h3 class="q-title">Q7. 請問您的性別？</h3>
+                <div class="options">
+                    <button class="option-btn" onclick="saveAndNext(7, 'q7_gender', '男')">男</button>
+                    <button class="option-btn" onclick="saveAndNext(7, 'q7_gender', '女')">女</button>
+                    <button class="option-btn" onclick="saveAndNext(7, 'q7_gender', '其他/不想透露')">其他/不想透露</button>
+                </div>
+            </div>
+
+            <div class="question-card" id="q8">
+                <h3 class="q-title">Q8. 請問您的年齡區間？</h3>
+                <div class="options">
+                    <button class="option-btn" onclick="saveAndNext(8, 'q8_age', '20歲以下')">20歲以下</button>
+                    <button class="option-btn" onclick="saveAndNext(8, 'q8_age', '21-30歲')">21-30歲</button>
+                    <button class="option-btn" onclick="saveAndNext(8, 'q8_age', '31-40歲')">31-40歲</button>
+                    <button class="option-btn" onclick="saveAndNext(8, 'q8_age', '41歲以上')">41歲以上</button>
+                </div>
+            </div>
+
+            <div class="question-card" id="q9">
+                <h3 class="q-title">Q9. 請問您的職業類別？</h3>
+                <div class="options">
+                    <button class="option-btn" onclick="saveAndNext(9, 'q9_job', '學生')">學生</button>
+                    <button class="option-btn" onclick="saveAndNext(9, 'q9_job', '上班族')">上班族</button>
+                    <button class="option-btn" onclick="saveAndNext(9, 'q9_job', '自由業/接案')">自由業/接案</button>
+                    <button class="option-btn" onclick="saveAndNext(9, 'q9_job', '服務業')">服務業</button>
+                    <button class="option-btn" onclick="saveAndNext(9, 'q9_job', '家管/其他')">家管/其他</button>
+                </div>
+            </div>
+
+            <div class="question-card" id="q10">
                 <h3 class="q-title">最後一步！鎖定開幕 VIP</h3>
                 <p style="color: #666; margin-bottom: 20px;">開幕即享 8 折，並有機會抽中雙人套餐。</p>
                 <input type="text" id="input-name" class="input-field" placeholder="怎麼稱呼你？">
@@ -207,7 +237,7 @@
         const sheetDBUrl = 'https://sheetdb.io/api/v1/p9smholezzu7k';
 
         let currentQ = 1;
-        const totalQ = 7;
+        const totalQ = 10; // 更新為 10 題
         let surveyData = { date: new Date().toLocaleString() };
 
         function scrollToSurvey() {
@@ -244,7 +274,6 @@
             btn.innerText = '資料傳送中...';
             btn.disabled = true;
 
-            // 這裡做了關鍵修改：把 surveyData 包成陣列 [surveyData]
             fetch(sheetDBUrl, {
                 method: 'POST',
                 headers: {
@@ -267,7 +296,7 @@
         }
 
         function showSuccess() {
-            document.getElementById('q7').classList.remove('active');
+            document.getElementById('q10').classList.remove('active'); // 隱藏 Q10
             document.getElementById('success').classList.add('active');
             document.getElementById('progress').style.width = '100%';
         }
