@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>甜辣匠 | 冰火實驗室封測計畫</title>
+    
+    <link rel="icon" type="image/png" href="image/favicon.png">
+
     <style>
         /* CSS 樣式設定 (保持不變) */
         :root {
@@ -233,11 +236,10 @@
     <footer><p>&copy; 2025 甜辣匠. All Rights Reserved.</p></footer>
 
     <script>
-        // SheetDB 網址
         const sheetDBUrl = 'https://sheetdb.io/api/v1/p9smholezzu7k';
 
         let currentQ = 1;
-        const totalQ = 10; // 更新為 10 題
+        const totalQ = 10;
         let surveyData = { date: new Date().toLocaleString() };
 
         function scrollToSurvey() {
@@ -296,7 +298,7 @@
         }
 
         function showSuccess() {
-            document.getElementById('q10').classList.remove('active'); // 隱藏 Q10
+            document.getElementById('q10').classList.remove('active');
             document.getElementById('success').classList.add('active');
             document.getElementById('progress').style.width = '100%';
         }
