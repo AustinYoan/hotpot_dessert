@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>甜辣匠 | 冰火實驗室封測計畫</title>
     <style>
+        /* CSS 樣式設定 */
         :root {
             --fire-color: #D93025;
             --fire-dark: #8c1b14;
@@ -14,171 +15,74 @@
             --text-light: #fff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
 
-        body {
-            overflow-x: hidden;
-            background-color: #fff;
-            width: 100%;
-        }
+        body { overflow-x: hidden; background-color: #fff; width: 100%; }
 
-        /* --- 1. Hero Section --- */
-        .hero {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-            position: relative;
-        }
-
-        .split {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
+        /* Hero Section */
+        .hero { display: flex; height: 100vh; width: 100%; position: relative; }
+        .split { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .split-fire { background-color: var(--fire-color); color: var(--text-light); }
         .split-ice { background-color: var(--ice-color); color: var(--text-dark); }
-
-        .bg-pattern {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.1;
-            background-size: cover; background-position: center;
-        }
+        .bg-pattern { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-size: cover; background-position: center; }
 
         .hero-content {
-            z-index: 10;
-            text-align: center;
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%; max-width: 800px;
-            background: rgba(255,255,255,0.95);
-            padding: 40px;
-            border-radius: 15px;
+            z-index: 10; text-align: center; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: 90%; max-width: 800px;
+            background: rgba(255,255,255,0.95); padding: 40px; border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         h1 { font-size: 3rem; margin-bottom: 10px; color: var(--text-dark); font-weight: 800; }
-        p.subtitle { font-size: 1.2rem; color: #666; margin-bottom: 30px; line-height: 1.6; }
-
         .cta-btn {
-            display: inline-block;
-            padding: 15px 40px;
+            display: inline-block; padding: 15px 40px;
             background: linear-gradient(90deg, var(--fire-color), var(--text-dark));
-            color: white;
-            font-size: 1.2rem; font-weight: bold;
-            text-decoration: none; border-radius: 50px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer; border: none;
+            color: white; font-size: 1.2rem; font-weight: bold; text-decoration: none;
+            border-radius: 50px; cursor: pointer; border: none; transition: transform 0.2s;
         }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(217, 48, 37, 0.4); }
+        .cta-btn:hover { transform: scale(1.05); }
+        .cta-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
 
-        /* --- 2. Story Section --- */
-        .section {
-            padding: 80px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .story-text {
-            color: #666; max-width: 100%; margin: 0 auto; line-height: 1.8; padding: 0 10px;
-        }
-
-        .story-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 40px;
-            align-items: center;
-        }
+        /* Story Section */
+        .section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .story-text { color: #666; max-width: 100%; margin: 0 auto; line-height: 1.8; padding: 0 10px; }
+        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; align-items: center; }
         .story-grid > div { min-width: 0; }
-
+        
+        /* 圖片路徑樣式 */
         .story-photo {
             display: block; width: 100%; height: 300px;
             object-fit: cover; border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        /* --- 3. Survey Section (互動市調區) --- */
-        #survey-section {
-            background-color: #f9f9f9;
-            padding: 100px 20px;
-            min-height: 80vh;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-        }
+        /* Survey Section */
+        #survey-section { background-color: #f9f9f9; padding: 100px 20px; min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .survey-container { background: white; width: 100%; max-width: 600px; padding: 40px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; }
+        
+        .progress-bar { width: 100%; height: 6px; background: #eee; margin-bottom: 30px; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--fire-color); width: 0%; transition: width 0.3s ease; }
 
-        .survey-container {
-            background: white;
-            width: 100%; max-width: 600px;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-
-        .progress-bar {
-            width: 100%; height: 6px;
-            background: #eee; margin-bottom: 30px;
-            border-radius: 3px; overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%; background: var(--fire-color);
-            width: 0%; transition: width 0.3s ease;
-        }
-
-        /* 這裡控制問題的顯示與隱藏 */
-        .question-card {
-            display: none; /* 預設全部隱藏 */
-            animation: fadeIn 0.5s ease;
-        }
-        .question-card.active {
-            display: block; /* 只有加了 active 的才會顯示 */
-        }
+        .question-card { display: none; animation: fadeIn 0.5s ease; }
+        .question-card.active { display: block; }
 
         .q-title { font-size: 1.5rem; margin-bottom: 10px; color: var(--text-dark); font-weight: bold; }
-        .q-subtitle { font-size: 0.9rem; color: #888; margin-bottom: 25px; display: block; }
-
         .options { display: flex; flex-direction: column; gap: 15px; }
-
         .option-btn {
-            padding: 15px;
-            border: 2px solid #eee; background: white;
-            border-radius: 10px; cursor: pointer;
-            transition: all 0.2s;
+            padding: 15px; border: 2px solid #eee; background: white;
+            border-radius: 10px; cursor: pointer; transition: all 0.2s;
             font-size: 1rem; text-align: left;
         }
-        .option-btn:hover, .option-btn:focus {
-            border-color: var(--fire-color); background-color: #fff0f0;
-        }
-
-        .input-field {
-            width: 100%; padding: 15px;
-            border: 2px solid #eee; border-radius: 10px;
-            font-size: 1rem; margin-bottom: 20px;
-        }
+        .option-btn:hover, .option-btn:focus { border-color: var(--fire-color); background-color: #fff0f0; }
+        .input-field { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 10px; font-size: 1rem; margin-bottom: 20px; }
 
         footer { background: #111; color: white; padding: 40px; text-align: center; }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* RWD */
         @media (max-width: 960px) {
-            .hero { flex-direction: column; }
-            h1 { font-size: 2rem; }
+            .hero { flex-direction: column; } h1 { font-size: 2rem; }
             .story-grid { grid-template-columns: 1fr; gap: 30px; } 
             .hero-content { width: 95%; padding: 25px; }
             .story-photo { height: 250px; }
@@ -190,10 +94,9 @@
     <div class="hero">
         <div class="split split-fire"><div class="bg-pattern"></div></div>
         <div class="split split-ice"><div class="bg-pattern"></div></div>
-        
         <div class="hero-content">
             <h1>甜辣匠</h1>
-            <p class="subtitle">這是一場味蕾的極限實驗。<br>當極致的<b>「辣」</b>遇上無負擔的<b>「甜」</b>。</p>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 30px;">這是一場味蕾的極限實驗。<br>當極致的<b>「辣」</b>遇上無負擔的<b>「甜」</b>。</p>
             <p style="margin-bottom: 20px; color: #888;">準開張 • 尋找 100 位初代試吃員</p>
             <button class="cta-btn" onclick="scrollToSurvey()">加入實驗，領取優惠</button>
         </div>
@@ -201,11 +104,8 @@
 
     <div class="section">
         <h2 style="font-size: 2rem; margin-bottom: 20px;">我們瘋了？還是你一直都想要？</h2>
-        <p class="story-text">
-            我們和你一樣，熱愛麻辣鍋帶來的靈魂激盪，卻厭倦了隨之而來的身體負擔。<br>
-            歷時 180 天研發，我們找到了完美的平衡公式：用專屬研發的「低卡解膩甜點」，為你的火鍋盛宴劃下清爽、無罪惡的句點。
-        </p>
-
+        <p class="story-text">我們和你一樣，熱愛麻辣鍋帶來的靈魂激盪，卻厭倦了隨之而來的身體負擔。<br>歷時 180 天研發，我們找到了完美的平衡公式：用專屬研發的「低卡解膩甜點」，為你的火鍋盛宴劃下清爽、無罪惡的句點。</p>
+        
         <div class="story-grid">
             <div>
                 <img src="image/hotpot.jpg" alt="麻辣鍋特寫" class="story-photo">
@@ -226,124 +126,152 @@
             
             <div class="question-card active" id="q1">
                 <h3 class="q-title">Q1. 請問您平均多久吃一次麻辣鍋？</h3>
-                <span class="q-subtitle">(或重口味鍋物)</span>
                 <div class="options">
-                    <button class="option-btn" onclick="nextQuestion(1)">每週至少 1 次 (我是狂熱者)</button>
-                    <button class="option-btn" onclick="nextQuestion(1)">每月 1-2 次 (我是常客)</button>
-                    <button class="option-btn" onclick="nextQuestion(1)">2-3 個月一次 (偶爾聚餐)</button>
-                    <button class="option-btn" onclick="nextQuestion(1)">幾乎不吃</button>
+                    <button class="option-btn" onclick="saveAndNext(1, 'q1_freq', '每週至少 1 次')">每週至少 1 次</button>
+                    <button class="option-btn" onclick="saveAndNext(1, 'q1_freq', '每月 1-2 次')">每月 1-2 次</button>
+                    <button class="option-btn" onclick="saveAndNext(1, 'q1_freq', '2-3 個月一次')">2-3 個月一次</button>
+                    <button class="option-btn" onclick="saveAndNext(1, 'q1_freq', '幾乎不吃')">幾乎不吃</button>
                 </div>
             </div>
 
             <div class="question-card" id="q2">
                 <h3 class="q-title">Q2. 您通常在什麼情境下吃麻辣鍋？</h3>
-                <span class="q-subtitle">跟誰一起去？</span>
                 <div class="options">
-                    <button class="option-btn" onclick="nextQuestion(2)">一個人獨享 (Me Time)</button>
-                    <button class="option-btn" onclick="nextQuestion(2)">跟另一半 / 曖昧對象 (約會)</button>
-                    <button class="option-btn" onclick="nextQuestion(2)">三五好友 / 同事 (聚餐)</button>
-                    <button class="option-btn" onclick="nextQuestion(2)">跟家人長輩</button>
+                    <button class="option-btn" onclick="saveAndNext(2, 'q2_who', '一個人獨享')">一個人獨享</button>
+                    <button class="option-btn" onclick="saveAndNext(2, 'q2_who', '約會')">約會</button>
+                    <button class="option-btn" onclick="saveAndNext(2, 'q2_who', '聚餐')">聚餐</button>
+                    <button class="option-btn" onclick="saveAndNext(2, 'q2_who', '跟家人長輩')">跟家人長輩</button>
                 </div>
             </div>
 
             <div class="question-card" id="q3">
-                <h3 class="q-title">Q3. 吃完麻辣鍋，您當下最想解決的「身體感受」是？</h3>
+                <h3 class="q-title">Q3. 吃完麻辣鍋，最想解決的感受？</h3>
                 <div class="options">
-                    <button class="option-btn" onclick="nextQuestion(3)">滿嘴油膩，想要清爽口感</button>
-                    <button class="option-btn" onclick="nextQuestion(3)">罪惡感太重，覺得熱量爆表</button>
-                    <button class="option-btn" onclick="nextQuestion(3)">太辣了，胃在燃燒需要舒緩</button>
-                    <button class="option-btn" onclick="nextQuestion(3)">沒特別感覺，只想趕快洗澡去味道</button>
+                    <button class="option-btn" onclick="saveAndNext(3, 'q3_pain', '油膩感')">滿嘴油膩感</button>
+                    <button class="option-btn" onclick="saveAndNext(3, 'q3_pain', '罪惡感')">罪惡感太重</button>
+                    <button class="option-btn" onclick="saveAndNext(3, 'q3_pain', '太辣')">太辣需要舒緩</button>
+                    <button class="option-btn" onclick="saveAndNext(3, 'q3_pain', '去味道')">只想去味道</button>
                 </div>
             </div>
 
             <div class="question-card" id="q4">
-                <h3 class="q-title">Q4. 如果有一款「專為麻辣鍋設計」的健康甜點，您希望它是？</h3>
+                <h3 class="q-title">Q4. 希望甜點是什麼形式？</h3>
                 <div class="options">
-                    <button class="option-btn" onclick="nextQuestion(4)">🍦 冰涼滑順的慕斯/冰淇淋感 (強調降溫)</button>
-                    <button class="option-btn" onclick="nextQuestion(4)">🍋 酸甜多汁的雪酪/果凍感 (強調解膩)</button>
-                    <button class="option-btn" onclick="nextQuestion(4)">🍵 濃郁回甘的茶香/草本系列 (強調刮油)</button>
-                    <button class="option-btn" onclick="nextQuestion(4)">🍰 口感紮實的蛋糕/塔派 (強調飽足)</button>
+                    <button class="option-btn" onclick="saveAndNext(4, 'q4_product', '冰淇淋/慕斯')">冰淇淋/慕斯</button>
+                    <button class="option-btn" onclick="saveAndNext(4, 'q4_product', '雪酪/果凍')">雪酪/果凍</button>
+                    <button class="option-btn" onclick="saveAndNext(4, 'q4_product', '茶香系列')">茶香系列</button>
+                    <button class="option-btn" onclick="saveAndNext(4, 'q4_product', '蛋糕/塔派')">蛋糕/塔派</button>
                 </div>
             </div>
 
             <div class="question-card" id="q5">
-                <h3 class="q-title">Q5. 對於一套「精緻單人鍋 ＋ 低卡法式甜點」...</h3>
-                <span class="q-subtitle">您覺得多少錢是願意「頻繁嘗試」的？</span>
+                <h3 class="q-title">Q5. 多少錢願意頻繁嘗試？</h3>
                 <div class="options">
-                    <button class="option-btn" onclick="nextQuestion(5)">$350 - $450 元</button>
-                    <button class="option-btn" onclick="nextQuestion(5)">$450 - $550 元</button>
-                    <button class="option-btn" onclick="nextQuestion(5)">$550 - $650 元</button>
-                    <button class="option-btn" onclick="nextQuestion(5)">$650 元以上</button>
+                    <button class="option-btn" onclick="saveAndNext(5, 'q5_price', '350-450')">$350 - $450</button>
+                    <button class="option-btn" onclick="saveAndNext(5, 'q5_price', '450-550')">$450 - $550</button>
+                    <button class="option-btn" onclick="saveAndNext(5, 'q5_price', '550-650')">$550 - $650</button>
+                    <button class="option-btn" onclick="saveAndNext(5, 'q5_price', '650+')">$650 以上</button>
                 </div>
             </div>
 
             <div class="question-card" id="q6">
-                <h3 class="q-title">Q6. 聽到「健康甜點 Ｘ 麻辣鍋」，哪個關鍵詞最吸引您？</h3>
+                <h3 class="q-title">Q6. 哪個關鍵詞最吸引您？</h3>
                 <div class="options">
-                    <button class="option-btn" onclick="nextQuestion(6)">✨ 「零罪惡感」 (吃大餐不怕胖)</button>
-                    <button class="option-btn" onclick="nextQuestion(6)">🔥 「冰火體驗」 (冷熱交替刺激)</button>
-                    <button class="option-btn" onclick="nextQuestion(6)">🌿 「解膩神器」 (清除油膩異味)</button>
-                    <button class="option-btn" onclick="nextQuestion(6)">📷 「高顏值」 (適合拍照打卡)</button>
+                    <button class="option-btn" onclick="saveAndNext(6, 'q6_keyword', '零罪惡感')">零罪惡感</button>
+                    <button class="option-btn" onclick="saveAndNext(6, 'q6_keyword', '冰火體驗')">冰火體驗</button>
+                    <button class="option-btn" onclick="saveAndNext(6, 'q6_keyword', '解膩神器')">解膩神器</button>
+                    <button class="option-btn" onclick="saveAndNext(6, 'q6_keyword', '高顏值')">高顏值</button>
                 </div>
             </div>
 
             <div class="question-card" id="q7">
-                <h3 class="q-title">最後一步！<br>鎖定開幕 VIP 優惠</h3>
-                <p style="color: #666; margin-bottom: 20px;">留下 Email，開幕即享 8 折優惠，並有機會抽中免費雙人套餐。</p>
-                <input type="text" class="input-field" placeholder="怎麼稱呼你？">
-                <input type="email" class="input-field" placeholder="你的 Email">
-                <button class="cta-btn" style="width: 100%" onclick="finishSurvey()">送出資料，領取優惠</button>
+                <h3 class="q-title">最後一步！鎖定開幕 VIP</h3>
+                <p style="color: #666; margin-bottom: 20px;">開幕即享 8 折，並有機會抽中雙人套餐。</p>
+                <input type="text" id="input-name" class="input-field" placeholder="怎麼稱呼你？">
+                <input type="email" id="input-email" class="input-field" placeholder="你的 Email">
+                <button class="cta-btn" id="submit-btn" style="width: 100%" onclick="finishSurvey()">送出資料</button>
             </div>
 
             <div class="question-card" id="success">
                 <h3 class="q-title" style="color: var(--fire-color)">🎉 登記成功！</h3>
                 <p>感謝你成為「甜辣匠」的創始關注者。</p>
-                <p style="margin-top: 10px;">請留意你的信箱，我們將在近期寄出開幕邀請。</p>
-                <br>
-                <p style="font-size: 0.9rem; color: #999;">截圖此畫面，開幕期間出示可直接兌換神秘小點一份。</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">請留意 Email，開幕通知將寄送給您。</p>
             </div>
 
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 甜辣匠 Sweet & Spicy Artisan. All Rights Reserved.</p>
-        <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">Follow us on Instagram</p>
-    </footer>
+    <footer><p>&copy; 2025 甜辣匠. All Rights Reserved.</p></footer>
 
     <script>
+        // --- 設定好的 API 網址 ---
+        const sheetDBUrl = 'https://sheetdb.io/api/v1/p9smholezzu7k';
+        // -----------------------
+
+        let currentQ = 1;
+        const totalQ = 7;
+        let surveyData = { date: new Date().toLocaleString() };
+
         function scrollToSurvey() {
             document.getElementById('survey-section').scrollIntoView({ behavior: 'smooth' });
         }
-
-        // 這裡設定總題數為 7 題
-        let currentQ = 1;
-        const totalQ = 7; 
 
         function updateProgress() {
             const percentage = ((currentQ - 1) / totalQ) * 100;
             document.getElementById('progress').style.width = percentage + '%';
         }
 
-        function nextQuestion(qIndex) {
-            // 隱藏目前這題
-            document.getElementById('q' + qIndex).classList.remove('active');
+        function saveAndNext(qIndex, key, value) {
+            surveyData[key] = value;
+            console.log('收集資料:', surveyData);
             
-            // 準備顯示下一題
+            document.getElementById('q' + qIndex).classList.remove('active');
             currentQ++;
             updateProgress();
-            
-            // 檢查下一題是否存在，存在就顯示
             if (document.getElementById('q' + currentQ)) {
                 document.getElementById('q' + currentQ).classList.add('active');
             }
         }
 
         function finishSurvey() {
+            const name = document.getElementById('input-name').value;
+            const email = document.getElementById('input-email').value;
+            
+            if(!email) { alert('請填寫 Email 以接收優惠喔！'); return; }
+
+            surveyData['name'] = name;
+            surveyData['email'] = email;
+
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = '資料傳送中...';
+            btn.disabled = true;
+
+            fetch(sheetDBUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: surveyData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                showSuccess();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('傳送失敗，請檢查網路後再試');
+                btn.innerText = '送出資料';
+                btn.disabled = false;
+            });
+        }
+
+        function showSuccess() {
             document.getElementById('q7').classList.remove('active');
             document.getElementById('success').classList.add('active');
             document.getElementById('progress').style.width = '100%';
         }
     </script>
 </body>
-</html>		
+</html>
