@@ -50,14 +50,16 @@
         .section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
         .story-text { color: #666; max-width: 100%; margin: 0 auto; line-height: 1.8; padding: 0 10px; }
         .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; align-items: center; }
-        .story-grid > div { min-width: 0; }
+        .story-grid > div { min-width: 0; display: flex; flex-direction: column; align-items: center; /* 讓圓形圖片置中 */ }
         
-        /* ★★★ 這裡修改了圖片比例 ★★★ */
+        /* ★★★ 這裡修改了圖片為圓形 ★★★ */
         .story-photo {
-            display: block; width: 100%;
-            aspect-ratio: 4 / 3; /* 設定為 4:3 的完美長方形比例 */
-            object-fit: cover; border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: block;
+            width: 80%; /* 稍微縮小一點，讓圓形看起來精緻些，你可以自行調整 60%-100% */
+            aspect-ratio: 1 / 1; /* 關鍵：強制設定為 1:1 正方形 */
+            object-fit: cover;   /* 關鍵：圖片填滿框框，多餘的裁切掉 */
+            border-radius: 50%;  /* 關鍵：50% 圓角，讓正方形變圓形 */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* 加強一點陰影增加立體感 */
         }
         
         /* Survey Section */
@@ -89,8 +91,8 @@
             .hero { flex-direction: column; } h1 { font-size: 2rem; }
             .story-grid { grid-template-columns: 1fr; gap: 30px; } 
             .hero-content { width: 95%; padding: 25px; }
-            /* 手機版可以稍微扁一點 */
-            .story-photo { aspect-ratio: 16 / 9; }
+            /* 手機版移除原本的比例設定，讓它維持上面的 1:1 圓形 */
+            /* .story-photo { aspect-ratio: 16 / 9; }  <-- 這行刪掉了 */
         }
     </style>
 </head>
