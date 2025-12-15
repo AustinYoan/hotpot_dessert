@@ -304,8 +304,23 @@
 
         function showSuccess() {
             document.getElementById('q10').classList.remove('active');
-            document.getElementById('success').classList.add('active');
+            const successDiv = document.getElementById('success');
+            successDiv.classList.add('active');
             document.getElementById('progress').style.width = '100%';
+
+            successDiv.innerHTML = `
+                <h3 class="q-title" style="color: var(--fire-color)">🎉 登記成功！</h3>
+                <p>為了八折，自尊心什麼的先丟一邊吧。</p>
+                
+                <div style="background: #FFF0F0; border: 2px dashed var(--fire-color); padding: 20px; margin: 20px 0; border-radius: 10px;">
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">憑此截圖通關密語享 8 折：</p>
+                    <h2 style="color: var(--fire-color); font-size: 1.6rem; font-weight: 900; margin: 0; line-height: 1.4;">
+                        「人家肚子餓餓...<br>想要吃肉肉 🥺」
+                    </h2>
+                </div>
+                
+                <p style="font-size: 0.9rem; color: #888;">(店員表示：好喔... 這邊請...)</p>
+            `;
         }
     </script>
 </body>
